@@ -77,12 +77,12 @@ $sender_io->on('workerStart', function(){
                 }
                 // http接口返回，如果用户离线socket返回fail
                 if($to && !isset($uidConnectionMap[$to])){
-                    return $http_connection->send('offline');
+                    return $http_connection->send('{"err":"offline"}');
                 }else{
-                    return $http_connection->send('ok');
+                    return $http_connection->send('{"success":"ok"}');
                 }
         }
-        return $http_connection->send('fail');
+        return $http_connection->send('{"err":"fail"}');
     };
     // 执行监听
     $inner_http_worker->listen();
